@@ -1,0 +1,116 @@
+body{
+	/* border:1px solid red; */
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+	background-color:rgba(250, 230, 210, 0.7);
+	color:brown;
+}
+#titrepageoperations{
+	
+	margin-bottom:20px;
+	border:2px solid black;
+	border-radius:12px;
+	box-shadow:10px 10px 8px #888888;
+	padding-bottom:3px;
+	padding-top:3px;
+	padding-left:200px;
+	padding-right:200px;
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+	font-size:1.3em;
+}
+
+#titrepageoperations p{
+	font-style:italic;
+	font-weight:bold
+}
+#operationssaisies{
+	
+	width:80%;
+}
+#operationssaisies table{
+	margin-top:15px;
+}
+#intituleoperation{
+	width:15%;
+	height:20px;
+}
+
+#solde{
+	margin-top:15px;
+}
+
+#saisieetrecap{
+	display:flex;
+	
+}
+#formulairesaisie{
+	text-align:center;
+	font-weight:bold;
+	width:75%
+}
+#recapdumois{	
+	border:2px solid white;
+	border-top:2px solid brown;
+	border-radius:8px;
+	text-align:center;
+	font-weight:bold;
+	padding:5px
+}
+#formulairesaisie span{
+	font-size:1em;
+	color:black;
+	
+}
+#separationsaisierecap{
+	width:2px;
+	height:95%;
+	margin-left:10px;
+	margin-right:10px;
+	margin-top:0px;
+	margin-bottom:0px
+	
+}
+table{
+	border-collapse:collapse;
+	width:100%;
+}
+
+th{
+	padding-left:20px;
+	padding-right:20px;
+	
+	background-color:rgba(192,192,192,0.7);	
+}
+
+tr{
+	padding-left:7px;		
+	height:30px;
+}
+
+
+td{	
+
+	text-align:center;
+	height:25px;
+	border-bottom:1px solid grey;
+}
+input,select,textarea{
+	
+	border:1px solid grey;
+	border-radius:5px;
+	background-color:rgba(128,128,128,0.2);
+	margin-right:10px;
+}
+hr{
+	margin-top:35px;
+	margin-bottom:35px;
+	text-align:center;		
+	color:white;
+	width:65%;
+	height:2px;
+	background-color:grey;
+	
+}
