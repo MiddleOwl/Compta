@@ -3,13 +3,48 @@
 	
 	$action=$_GET['action'];
 	
+	
+	
+	
 	switch($action){
 		case 'read':
 			$dateDuJour=date('Y-m-d');
-			$annee=explode('-',$dateDuJour)[0];
-			$mois=explode('-',$dateDuJour)[1];
+			$annee=$_GET['annee']!=null ? $_GET['annee']:explode('-',$dateDuJour)[0];
+			$mois=$_GET['mois']!=null ? $_GET['mois'] : explode('-',$dateDuJour)[1];
+			$anneePrecedente = $mois==01 ? ($annee-1) : $annee;
+			$anneeSuivante = $mois==12 ? ($annee+1) : $annee;
+			$moisPrecedent = $mois==01 ? 12 : ($mois-1);
+			$moisSuivant = $mois==12 ? 1 : ($mois+1);
 			$dateDuJourConviviale=date('d-M-Y');
-			$moisConvivial=explode('-',$dateDuJourConviviale)[1];	
+			//$moisConvivial=explode('-',$dateDuJourConviviale)[1];
+			switch($mois){
+				case 1: $moisConvivial='Janvier';
+				break;
+				case 2: $moisConvivial='Février';
+				break;
+				case 3:$moisConvivial= 'Mars';
+				break;
+				case 4:$moisConvivial= 'Avril';
+				break;
+				case 5: $moisConvivial='Mai';
+				break;
+				case 6: $moisConvivial='Juin';
+				break;
+				case 7:$moisConvivial= 'Juillet';
+				break;
+				case 8:$moisConvivial= 'Août';
+				break;
+				case 9: $moisConvivial='Septembre';
+				break;
+				case 10: $moisConvivial='Octobre';
+				break;
+				case 11:$moisConvivial= 'Novembre';
+				break;
+				case 12:$moisConvivial= 'Décembre';
+				break;
+				
+				
+			}
 			$operationsDuMois=get_operations_du_mois($annee,$mois);
 			$posteBudgetaire=get_poste_budgetaire();
 			

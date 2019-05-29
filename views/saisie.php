@@ -11,6 +11,15 @@
 			<a href="index.php"><p>Retour à l'accueil</p></a>
 		</div>
 		
+		<div id="operationsprecedentes">
+			
+			<?php echo('<a href="index.php?page=operationsdumois&action=read&annee='.$anneePrecedente.'&mois='.$moisPrecedent.'"><p>Voir les opérations du mois précédent</p></a>');?>
+		</div>
+		
+		<div id= "operationssuivantes">
+			<?php echo ('<a href="index.php?page=operationsdumois&action=read&annee='.$anneeSuivante.'&mois='.$moisSuivant.'"><p>Voir les opérations du mois suivant</p></a>');?>
+		</div>
+		
 		<div id="operationssaisies">
 		
 			<div>
@@ -25,7 +34,7 @@
 						<th>Date de l'opération</th>
 						<th>Nature</th>
 						<th>Type</th>
-						<th>Poste budgétaire</th>
+						<th>Poste budgétaire</th>			
 						<th>Intitulé</th>
 						<th>Montant</th>					
 					</tr>
@@ -34,12 +43,12 @@
 				<?php 
 				foreach($operationsDuMois as $oM){
 					echo('
-						<tr>
+						<tr class="ligneoperation">
 							<td>Modif.|Suppr.</td>
 							<td>'.$oM['date'].'</td>
-							<td>'.$oM['nature'].'</td>
+							<td><input class="nature" type="text" value="'.$oM['nature'].'"/></td>
 							<td id="type">'.$oM['type'].'</td>
-							<td>'.get_nom_poste_budgetaire_from_id_poste_budgetaire($oM['posteBudgetaire'])['nom'].'</td>
+							<td><input class="postebudgetaire" value="'.get_nom_poste_budgetaire_from_id_poste_budgetaire($oM['posteBudgetaire'])['nom'].'"/></td>
 							<td>'.$oM['intitule'].'</td>
 							<td><input class="montant" type="text" value="'.$oM['montant'].'"/></td>
 						</tr>
@@ -110,10 +119,17 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td></td>
-							<td></td>
-						</tr>
+					<?php 
+					
+						foreach($posteBudgetaire as $pb){
+							echo('
+							<tr class="recapmensuelle">
+								<td><input class="recapnomposte" type="texte" name="recapnomposte" value="'.$pb['nom'].'"/></td>
+								<td><input class="recapmontantposte" type="text" name="montantCumuleMois" value=""</td>
+							</tr>
+							');
+						}
+					?>
 					</tbody>
 				</table>
 			</div>

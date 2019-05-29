@@ -24,7 +24,7 @@
 	</tbody>
 </table>
 
-<a href="index.php?page=operationsdumois&action=read"><input type="button" value="Saisir une opération"/></a>
+<a href="index.php?page=operationsdumois&action=read&annee=&mois="><input type="button" value="Saisir une opération"/></a>
 
 	
 <?php$content=ob_get_clean();?>
