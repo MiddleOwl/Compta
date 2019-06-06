@@ -1,42 +1,39 @@
-<!DOCTYPE html>
 <?php $title="Opérations du mois en cours"?>
-<html>
-	<body>
-		<div id="titrepageoperations">
+
+<?php ob_start(); ?>
+		<div id="titrepageoperations" class="text-center">
 			<p>Opérations du mois de </p>
-			<p><?php echo($moisConvivial.'  '.$annee)?>
+			<?php echo('<a href="index.php?page=operationsdumois&action=read&annee='.$anneePrecedente.'&mois='.$moisPrecedent.'"><span class="fas fa-angle-double-left" title="Voir les opérations du mois précédent"></span></a>');?>
+            <?php echo($moisConvivial.'  '.$annee)?>
+            <?php echo ('<a href="index.php?page=operationsdumois&action=read&annee='.$anneeSuivante.'&mois='.$moisSuivant.'"><span class="fas fa-angle-double-right" title="Voir les opérations du mois suivant"></span></a>');?>
 		</div>
 		
 		<div id="img">
 			<a href="index.php"><p>Retour à l'accueil</p></a>
 		</div>
 		
-		<div id="operationsprecedentes">
-			
-			<?php echo('<a href="index.php?page=operationsdumois&action=read&annee='.$anneePrecedente.'&mois='.$moisPrecedent.'"><p>Voir les opérations du mois précédent</p></a>');?>
-		</div>
+        
 		
 		<div id= "operationssuivantes">
-			<?php echo ('<a href="index.php?page=operationsdumois&action=read&annee='.$anneeSuivante.'&mois='.$moisSuivant.'"><p>Voir les opérations du mois suivant</p></a>');?>
+			
 		</div>
 		
-		<div id="operationssaisies">
+        <div id="block_report" class="d-flex align-items-center">
+            <label>Report :</label>
+            <input id="report" type="number" step="0.01"/>
+        </div>
 		
-			<div>
-				<span> Report: </span>
-				<input id="report" type="number" step="0.01"/>
-			</div>
-			
+		<div id="operationssaisies">
 			<table>
 				<thead>
 					<tr>
-						<th>Action</th>
-						<th>Date de l'opération</th>
-						<th>Nature</th>
-						<th>Type</th>
-						<th>Poste budgétaire</th>			
-						<th>Intitulé</th>
-						<th>Montant</th>					
+						<th style="width: 150px">Action</th>
+						<th style="width: 90px">Date de l'opération</th>
+						<th style="width: 70px">Nature</th>
+						<th style="width: 70px">Type</th>
+						<th style="width: 70px">Poste budgétaire</th>			
+						<th style="width: 200px">Intitulé</th>
+						<th style="width: 70px">Montant</th>					
 					</tr>
 				</thead>
 				<tbody> 
@@ -46,9 +43,9 @@
 						<tr class="ligneoperation">
 							<td>Modif.|Suppr.</td>
 							<td>'.$oM['date'].'</td>
-							<td><input class="nature" type="text" value="'.$oM['nature'].'"/></td>
+							<td class="nature">'.$oM['nature'].'</td>
 							<td id="type">'.$oM['type'].'</td>
-							<td><input class="postebudgetaire" value="'.get_nom_poste_budgetaire_from_id_poste_budgetaire($oM['posteBudgetaire'])['nom'].'"/></td>
+							<td class="postebudgetaire">'.get_nom_poste_budgetaire_from_id_poste_budgetaire($oM['posteBudgetaire'])['nom'].'</td>
 							<td>'.$oM['intitule'].'</td>
 							<td><input class="montant" type="text" value="'.$oM['montant'].'"/></td>
 						</tr>
@@ -57,54 +54,68 @@
 				?>
 				</tbody>			
 			</table>
-			<div>
-							
-				<span>Solde: </span>
-				<input id="solde" type="text" name="solde" value=""/>
-				
-			
-			</div>
 		</div>
+
+        <div id="block_solde" class="d-flex justify-content-end align-items-center">
+            <label>Solde :</label>
+            <input id="solde" type="text" name="solde" value=""/>
+        </div>
 		
 		<hr>
 		
 		<div id="saisieetrecap">
 			<div id="formulairesaisie">
 				<p id="titresaisie">Saisir une nouvelle opération</p>
-				
-					
-						<p>
-							<span>Date:</span>						
-							<input id="dateoperation" type="date" name="dateoperation" value="dateoperation"/>
-							
-						
-							<span>Nature:</span>
-							<select id="natureoperation" name="natureoperation">
-								<option value="Dépense">Dépense</option>
-								<option value="Recette">Recette</option>
-							</select>
-						
-							<span>Type:</span>
-							<select id="typeoperation" name="typeoperation">
-								<option value="Carte Bancaire">Carte bancaire</option>
-								<option value="Chèque">Chèque</option>
-								<option value="Virement">Virement</option>
-								<option value="Prélèvement">Prélèvement</option>
-							</select>
-							
-							<span>Poste budgétaire:</span>
-							<select id="postebudgetaire" name="postebudgetaire">
-								<?php foreach($posteBudgetaire as $pb){echo ("<option value=".$pb['nom'].">".$pb['nom']."</option>");}?>
-							</select>
-							
-							<span>Intitulé:</span>
-							<textarea id="intituleoperation"rows="1" cols="40"></textarea>
-							
-							<span>Montant:</span>
-							<input id="montantoperation" type="number" step="0.01"/>										
-					
-						</p>
-						<input id="saveOperation" type="button" name="enregistrer" value="Enregistrer"/>
+
+                <table>
+                    <tr>
+                        <td><label>Date:</label></td>
+                        <td><input id="dateoperation" type="date" name="dateoperation" value="dateoperation"/></td>
+                    </tr>
+                
+                    <tr>
+                        <td><label>Nature:</label></td>
+                        <td>
+                            <select id="natureoperation" name="natureoperation">
+                                <option value="Dépense">Dépense</option>
+                                <option value="Recette">Recette</option>
+                            </select>
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td><label>Type:</label>
+                        <td>
+                            <select id="typeoperation" name="typeoperation">
+                                <option value="Carte Bancaire">Carte bancaire</option>
+                                <option value="Chèque">Chèque</option>
+                                <option value="Virement">Virement</option>
+                                <option value="Prélèvement">Prélèvement</option>
+                            </select>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td><label>Poste budgétaire:</label></td>
+                        <td>
+                            <select id="postebudgetaire" name="postebudgetaire">
+                            <?php foreach($posteBudgetaire as $pb){echo ("<option value=".$pb['nom'].">".$pb['nom']."</option>");}?>
+                            </select>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td><label>Intitulé:</label></td>
+                        <td><textarea id="intituleoperation"rows="1" cols="40"></textarea></td>
+                    </tr>
+                    
+                    <tr>
+                        <td><label>Montant:</label></td>
+                        <td><input id="montantoperation" type="number" step="0.01"/></td>
+                    </tr>
+                </table>
+
+                <input id="saveOperation" type="button" name="enregistrer" value="Enregistrer"/>
 			</div>
 			
 			<hr id="separationsaisierecap">
@@ -136,9 +147,6 @@
 		</div>
 		
 		<hr>
+<?php $content = ob_get_clean(); ?>
 			
-				
-	</body>
-	
-</html>
 <?php include(dirname(__FILE__)."/../templates/template.php");
