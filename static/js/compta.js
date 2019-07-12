@@ -36,7 +36,7 @@ $(document).ready(function(){
 		var montantRecettes=0;
 		
 		$('.ligneoperation').each(function(){
-			if($(this).find(".nature").val()=="Dépense"){
+			if($(this).find(".nature").text()=="Dépense"){
 				
 					//alert(-($(this).find(".montant").val()));
 					montantDepenses+=(parseFloat($(this).find('.montant').val()));
@@ -83,7 +83,7 @@ $(document).ready(function(){
 			switch($(this).find(".recapnomposte").val()){
 				case 'Alimentation':
 				$('.ligneoperation').each(function(){
-					if($(this).find(".postebudgetaire").val()=="Alimentation"){
+					if($(this).find(".postebudgetaire").text()=="Alimentation"){
 						
 						montantCumulePosteAlim+=(parseFloat($(this).find('.montant').val()));
 					}
@@ -95,7 +95,7 @@ $(document).ready(function(){
 				
 				case 'Emprunts':
 				$('.ligneoperation').each(function(){
-					if($(this).find(".postebudgetaire").val()=="Emprunts"){
+					if($(this).find(".postebudgetaire").text()=="Emprunts"){
 						
 						montantCumulePosteEmprunt+=(parseFloat($(this).find('.montant').val()));
 					}
@@ -107,7 +107,7 @@ $(document).ready(function(){
 				
 				case 'Loisirs':
 				$('.ligneoperation').each(function(){
-					if($(this).find(".postebudgetaire").val()=="Loisirs"){
+					if($(this).find(".postebudgetaire").text()=="Loisirs"){
 						
 						montantCumulePosteLoisirs+=(parseFloat($(this).find('.montant').val()));
 					}
@@ -119,7 +119,7 @@ $(document).ready(function(){
 				
 				case 'Epargne':
 				$('.ligneoperation').each(function(){
-					if($(this).find(".postebudgetaire").val()=="Epargne"){
+					if($(this).find(".postebudgetaire").text()=="Epargne"){
 						
 						montantCumulePosteEpargne+=(parseFloat($(this).find('.montant').val()));
 					}
@@ -131,7 +131,7 @@ $(document).ready(function(){
 				
 				case 'Cadeaux':
 				$('.ligneoperation').each(function(){
-					if($(this).find(".postebudgetaire").val()=="Cadeaux"){
+					if($(this).find(".postebudgetaire").text()=="Cadeaux"){
 						
 						montantCumulePosteCadeaux+=(parseFloat($(this).find('.montant').val()));
 					}
@@ -143,7 +143,7 @@ $(document).ready(function(){
 				
 				case 'Gasoil':
 				$('.ligneoperation').each(function(){
-					if($(this).find(".postebudgetaire").val()=="Gasoil"){
+					if($(this).find(".postebudgetaire").text()=="Gasoil"){
 						
 						montantCumulePosteGasoil+=(parseFloat($(this).find('.montant').val()));
 					}
@@ -155,7 +155,7 @@ $(document).ready(function(){
 				
 				case 'Vestimentaire':
 				$('.ligneoperation').each(function(){
-					if($(this).find(".postebudgetaire").val()=="Vestimentaire"){
+					if($(this).find(".postebudgetaire").text()=="Vestimentaire"){
 						
 						montantCumulePosteVestimentaire+=(parseFloat($(this).find('.montant').val()));
 					}
@@ -167,7 +167,7 @@ $(document).ready(function(){
 				
 				case 'Télécom':
 				$('.ligneoperation').each(function(){
-					if($(this).find(".postebudgetaire").val()=="Télécom"){
+					if($(this).find(".postebudgetaire").text()=="Télécom"){
 						
 						montantCumulePosteTelecom+=(parseFloat($(this).find('.montant').val()));
 					}
@@ -179,7 +179,7 @@ $(document).ready(function(){
 				
 				case 'Energie':
 				$('.ligneoperation').each(function(){
-					if($(this).find(".postebudgetaire").val()=="Energie"){
+					if($(this).find(".postebudgetaire").text()=="Energie"){
 						
 						montantCumulePosteEnergie+=(parseFloat($(this).find('.montant').val()));
 					}
@@ -191,7 +191,7 @@ $(document).ready(function(){
 				
 				case 'Santé':
 				$('.ligneoperation').each(function(){
-					if($(this).find(".postebudgetaire").val()=="Santé"){
+					if($(this).find(".postebudgetaire").text()=="Santé"){
 						
 						montantCumulePosteSante+=(parseFloat($(this).find('.montant').val()));
 					}
@@ -203,7 +203,7 @@ $(document).ready(function(){
 				
 				case 'Taxes/Impôts':
 				$('.ligneoperation').each(function(){
-					if($(this).find(".postebudgetaire").val()=="Taxes/Impôts"){
+					if($(this).find(".postebudgetaire").text()=="Taxes/Impôts"){
 						
 						montantCumulePosteImpots+=(parseFloat($(this).find('.montant').val()));
 					}
@@ -215,7 +215,7 @@ $(document).ready(function(){
 				
 				case 'Vacances(location)':
 				$('.ligneoperation').each(function(){
-					if($(this).find(".postebudgetaire").val()=="Vacances(location)"){
+					if($(this).find(".postebudgetaire").text()=="Vacances(location)"){
 						
 						montantCumulePosteVacances+=(parseFloat($(this).find('.montant').val()));
 					}
@@ -227,7 +227,7 @@ $(document).ready(function(){
 				
 				case 'Auto (assurance+entretien)':
 				$('.ligneoperation').each(function(){
-					if($(this).find(".postebudgetaire").val()=="Auto (assurance+entretien)"){
+					if($(this).find(".postebudgetaire").text()=="Auto (assurance+entretien)"){
 						
 						montantCumulePosteAuto+=(parseFloat($(this).find('.montant').val()));
 					}
@@ -239,7 +239,7 @@ $(document).ready(function(){
 				
 				case 'Maison':
 				$('.ligneoperation').each(function(){
-					if($(this).find(".postebudgetaire").val()=="Maison"){
+					if($(this).find(".postebudgetaire").text()=="Maison"){
 						
 						montantCumulePosteMaison+=(parseFloat($(this).find('.montant').val()));
 					}
@@ -251,7 +251,7 @@ $(document).ready(function(){
 				
 				case 'Scolarité':
 				$('.ligneoperation').each(function(){
-					if($(this).find(".postebudgetaire").val()=="Scolarité"){
+					if($(this).find(".postebudgetaire").text()=="Scolarité"){
 						
 						montantCumulePosteScolarite+=(parseFloat($(this).find('.montant').val()));
 					}
@@ -263,7 +263,7 @@ $(document).ready(function(){
 				
 				case 'Garde Enfants':
 				$('.ligneoperation').each(function(){
-					if($(this).find(".postebudgetaire").val()=="Garde Enfants"){
+					if($(this).find(".postebudgetaire").text()=="Garde Enfants"){
 						
 						montantCumulePosteGardeEnfants+=(parseFloat($(this).find('.montant').val()));
 					}
@@ -275,7 +275,7 @@ $(document).ready(function(){
 				
 				case 'CAF':
 				$('.ligneoperation').each(function(){
-					if($(this).find(".postebudgetaire").val()=="CAF"){
+					if($(this).find(".postebudgetaire").text()=="CAF"){
 						
 						montantCumulePosteCAF+=(parseFloat($(this).find('.montant').val()));
 					}
@@ -287,7 +287,7 @@ $(document).ready(function(){
 				
 				case 'Salaire':
 				$('.ligneoperation').each(function(){
-					if($(this).find(".postebudgetaire").val()=="Salaire"){
+					if($(this).find(".postebudgetaire").text()=="Salaire"){
 						
 						montantCumulePosteSalaire+=(parseFloat($(this).find('.montant').val()));
 					}
