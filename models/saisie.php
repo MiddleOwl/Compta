@@ -17,6 +17,17 @@
 		return($operationsDuMois);
 	}
 	
+	function get_all_operations($annee,$mois){
+		include(dirname(__FILE__)."/../hidden/connexion.php");
+		$allOperations=array();
+		$query=$bdd -> query("SELECT * FROM operations WHERE date <='".$annee."-".$mois."-31'");
+		while($data=$query->fetch()){
+			$allOperations[]=$data;
+		}
+		$query->closeCursor();
+		return($allOperations);
+	}
+	
 	function get_poste_budgetaire(){
 		include(dirname(__FILE__)."/../hidden/connexion.php");
 		$posteBudgetaire=array();

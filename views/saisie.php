@@ -16,12 +16,7 @@
 		
 		<div id= "operationssuivantes">
 			
-		</div>
-		
-        <div id="block_report" class="d-flex align-items-center">
-            <label>Report :</label>
-            <input id="report" type="number" step="0.01"/>
-        </div>
+		</div>       
 		
 		<div id="operationssaisies">
 			<table>

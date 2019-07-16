@@ -1,6 +1,20 @@
 $(document).ready(function(){
 	
-	$('#report').load('index.php?page=operationsdumois&action=read&annee=2019&mois=04 #solde');
+	var url=new URL(location);	
+	var annee=url.searchParams.get('annee');
+	var mois=url.searchParams.get('mois');
+	
+	
+	$.get(
+		'index.php?page=operationsdumois&action=read',
+		{'annee':annee,'mois':mois},		
+		function(data){
+			$('#solde').val(data);
+			
+		},
+		'text'
+	);
+	
 	
 	$('#saveOperation').click(function(){
 		
@@ -24,40 +38,10 @@ $(document).ready(function(){
 				
 			},
 			"text"
-		)
-		
-			
+		)		
 		
 	});	
 	
-	function calcul_solde(){
-		var solde;
-		var montantDepenses=0;
-		var montantRecettes=0;
-		
-		$('.ligneoperation').each(function(){
-			if($(this).find(".nature").text()=="Dépense"){
-				
-					//alert(-($(this).find(".montant").val()));
-					montantDepenses+=(parseFloat($(this).find('.montant').val()));
-					
-					
-				
-			}
-			else{
-					montantRecettes+=(parseFloat($(this).find('.montant').val()));
-					
-			}
-			
-		});
-		console.log('montant des recettes: '+montantRecettes+' montant des dépenses: '+montantDepenses)
-		
-		solde=montantRecettes-montantDepenses;
-		
-		$('#solde').val(solde.toFixed(2));	
-	
-	}
-	calcul_solde();
 	
 	function calcul_montant_cumule(){
 		var montantCumulePosteAlim=0;

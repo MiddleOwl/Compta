@@ -1,16 +1,17 @@
 <?php
 	include(dirname(__FILE__)."/../models/saisie.php");
 	
-	$action=$_GET['action'];
-	
-	
+	$action=$_GET['action'];	
 	
 	
 	switch($action){
 		case 'read':
+			$solde=0;
+			$montantDepenses=0;
+			$montantRecettes=0;
 			$dateDuJour=date('Y-m-d');
-			$annee=$_GET['annee']!=null ? $_GET['annee']:explode('-',$dateDuJour)[0];
-			$mois=$_GET['mois']!=null ? $_GET['mois'] : explode('-',$dateDuJour)[1];
+			$annee=(isset($_GET['annee'])&& $_GET['annee']!=null) ? $_GET['annee']:explode('-',$dateDuJour)[0];
+			$mois=(isset($_GET['mois']) && $_GET['mois']!=null) ? $_GET['mois'] : explode('-',$dateDuJour)[1];
 			$anneePrecedente = $mois==01 ? ($annee-1) : $annee;
 			$anneeSuivante = $mois==12 ? ($annee+1) : $annee;
 			$moisPrecedent = $mois==01 ? 12 : ($mois-1);
@@ -19,7 +20,7 @@
 			//$moisConvivial=explode('-',$dateDuJourConviviale)[1];
 			switch($mois){
 				case 1: $moisConvivial='Janvier';
-				break;
+				break;	
 				case 2: $moisConvivial='Février';
 				break;
 				case 3:$moisConvivial= 'Mars';
@@ -45,8 +46,24 @@
 				
 				
 			}
-			$operationsDuMois=get_operations_du_mois($annee,$mois);
+			$operationsDuMois=get_operations_du_mois($annee,$mois);		
 			$posteBudgetaire=get_poste_budgetaire();
+			$allOperations=get_all_operations($annee,$mois);
+			
+			
+			foreach($allOperations as $o){
+				if($o['nature'] == 'Dépense'){
+					$montantDepenses+=$o['montant'];
+					
+				}
+				if($o['nature']=='Recette'){
+					$montantRecettes+=$o['montant'];
+				}				
+			}
+			
+			$solde=$montantRecettes-$montantDepenses;
+			
+			echo $solde;			
 			
 
 			include(dirname(__FILE__)."/../views/saisie.php");
