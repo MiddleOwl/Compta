@@ -6,9 +6,7 @@
 	
 	switch($action){
 		case 'read':
-			$solde=0;
-			$montantDepenses=0;
-			$montantRecettes=0;
+			
 			$dateDuJour=date('Y-m-d');
 			$annee=(isset($_GET['annee'])&& $_GET['annee']!=null) ? $_GET['annee']:explode('-',$dateDuJour)[0];
 			$mois=(isset($_GET['mois']) && $_GET['mois']!=null) ? $_GET['mois'] : explode('-',$dateDuJour)[1];
@@ -48,27 +46,33 @@
 			}
 			$operationsDuMois=get_operations_du_mois($annee,$mois);		
 			$posteBudgetaire=get_poste_budgetaire();
-			$allOperations=get_all_operations($annee,$mois);
 			
+			include(dirname(__FILE__)."/../views/saisie.php");
+		break;
+		
+		case 'solde':			
+			$solde=0;
+			$montantDepenses=0;
+			$montantRecettes=0;			
+			$allOperations=get_all_operations($_GET['annee'],$_GET['mois']);
+			//print_r($allOperations);
 			
+			//echo($_GET['annee'].'--'.$_GET['mois']);
 			foreach($allOperations as $o){
 				if($o['nature'] == 'Dépense'){
-					$montantDepenses+=$o['montant'];
-					
+					$montantDepenses+=$o['montant'];					
 				}
+				
 				if($o['nature']=='Recette'){
 					$montantRecettes+=$o['montant'];
 				}				
 			}
+		
+			$solde=$solde+$montantRecettes-$montantDepenses;
 			
-			$solde=$montantRecettes-$montantDepenses;
+			echo($solde);			
 			
-			echo $solde;			
-			
-
-			include(dirname(__FILE__)."/../views/saisie.php");
-			
-			break;
+		break;
 		
 		case 'save':
 			$date=$_POST['date'];
@@ -76,19 +80,7 @@
 			$type=$_POST['type'];
 			$idPosteBudgetaire=get_id_poste_budgetaire_from_nom_poste_budgetaire($_POST['poste'])['id'];
 			$intitule=$_POST['intitule'];
-			$montant=$_POST['montant'];
-			
-			
-			
-			// function update_solde(){
-				// $operationsDuMois=get_operations_du_mois(12,2018);
-				// $solde=1000;
-				// foreach ($operationsDuMois as $oM){
-					// $solde=$solde-$oM['montant'];
-				// }
-				// return($solde);
-				
-			// }
+			$montant=$_POST['montant'];	
 			
 			if(!empty($date) AND !empty($montant)){
 				
@@ -99,21 +91,20 @@
 					$idPosteBudgetaire,
 					$intitule,
 					$montant
-				);
-				
-				// echo(gettype ($montant));
-				// $montant=(int)$montant;
-				// echo(gettype ($montant));
-				
+				);			
 				
 				echo('La '.$_POST['nature'].' a bien été enregistrée');
 				
-			}	
+			}
 			
 			else{
 				echo('Saisis toutes les infos');
 			}	
 			
-	break;
+		break;
+		
+		case 'update':
+			
+			
 	}
 ?>

@@ -25,7 +25,7 @@
         </table>
     </div>
 
-    <a href="index.php?page=operationsdumois&action=read&annee=&mois="><input type="button" value="Saisir une opération"/></a>
+<?php echo("<a href='index.php?page=operationsdumois&action=read&annee=".date('Y')."&mois=".date('n')."'><input type='button' value='Saisir une opération'/></a>");?>
 <?php $content=ob_get_clean(); ?>
 
 <?php include(__DIR__."/../templates/template.php"); ?>

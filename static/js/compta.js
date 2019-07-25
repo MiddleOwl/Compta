@@ -6,12 +6,15 @@ $(document).ready(function(){
 	
 	
 	$.get(
-		'index.php?page=operationsdumois&action=read',
-		{'annee':annee,'mois':mois},		
+	
+		'index.php?page=operationsdumois&action=solde',
+		
+		{'annee':annee,'mois':mois},
+		
 		function(data){
-			$('#solde').val(data);
-			
+			$('#solde').val(data);			
 		},
+		
 		'text'
 	);
 	
@@ -34,7 +37,7 @@ $(document).ready(function(){
 			
 			function(data){
 				alert(data);
-				location='index.php?page=operationsdumois&action=read';
+				location='index.php?page=operationsdumois&action=read&annee='+annee+'&mois='+mois;
 				
 			},
 			"text"
@@ -67,9 +70,9 @@ $(document).ready(function(){
 			switch($(this).find(".recapnomposte").val()){
 				case 'Alimentation':
 				$('.ligneoperation').each(function(){
-					if($(this).find(".postebudgetaire").text()=="Alimentation"){
+					if($(this).find("#postebudgetaire").text()=="Alimentation"){
 						
-						montantCumulePosteAlim+=(parseFloat($(this).find('.montant').val()));
+						montantCumulePosteAlim+=(parseFloat($(this).find('#montant').val()));
 					}
 						
 				});
@@ -79,9 +82,9 @@ $(document).ready(function(){
 				
 				case 'Emprunts':
 				$('.ligneoperation').each(function(){
-					if($(this).find(".postebudgetaire").text()=="Emprunts"){
+					if($(this).find("#postebudgetaire").text()=="Emprunts"){
 						
-						montantCumulePosteEmprunt+=(parseFloat($(this).find('.montant').val()));
+						montantCumulePosteEmprunt+=(parseFloat($(this).find('#montant').val()));
 					}
 						
 				});
@@ -91,9 +94,9 @@ $(document).ready(function(){
 				
 				case 'Loisirs':
 				$('.ligneoperation').each(function(){
-					if($(this).find(".postebudgetaire").text()=="Loisirs"){
+					if($(this).find("#postebudgetaire").text()=="Loisirs"){
 						
-						montantCumulePosteLoisirs+=(parseFloat($(this).find('.montant').val()));
+						montantCumulePosteLoisirs+=(parseFloat($(this).find('#montant').val()));
 					}
 						
 				});
@@ -103,9 +106,9 @@ $(document).ready(function(){
 				
 				case 'Epargne':
 				$('.ligneoperation').each(function(){
-					if($(this).find(".postebudgetaire").text()=="Epargne"){
+					if($(this).find("#postebudgetaire").text()=="Epargne"){
 						
-						montantCumulePosteEpargne+=(parseFloat($(this).find('.montant').val()));
+						montantCumulePosteEpargne+=(parseFloat($(this).find('#montant').val()));
 					}
 						
 				});
@@ -115,9 +118,9 @@ $(document).ready(function(){
 				
 				case 'Cadeaux':
 				$('.ligneoperation').each(function(){
-					if($(this).find(".postebudgetaire").text()=="Cadeaux"){
+					if($(this).find("#postebudgetaire").text()=="Cadeaux"){
 						
-						montantCumulePosteCadeaux+=(parseFloat($(this).find('.montant').val()));
+						montantCumulePosteCadeaux+=(parseFloat($(this).find('#montant').val()));
 					}
 						
 				});
@@ -127,9 +130,9 @@ $(document).ready(function(){
 				
 				case 'Gasoil':
 				$('.ligneoperation').each(function(){
-					if($(this).find(".postebudgetaire").text()=="Gasoil"){
+					if($(this).find("#postebudgetaire").text()=="Gasoil"){
 						
-						montantCumulePosteGasoil+=(parseFloat($(this).find('.montant').val()));
+						montantCumulePosteGasoil+=(parseFloat($(this).find('#montant').val()));
 					}
 						
 				});
@@ -139,9 +142,9 @@ $(document).ready(function(){
 				
 				case 'Vestimentaire':
 				$('.ligneoperation').each(function(){
-					if($(this).find(".postebudgetaire").text()=="Vestimentaire"){
+					if($(this).find("#postebudgetaire").text()=="Vestimentaire"){
 						
-						montantCumulePosteVestimentaire+=(parseFloat($(this).find('.montant').val()));
+						montantCumulePosteVestimentaire+=(parseFloat($(this).find('#montant').val()));
 					}
 						
 				});
@@ -151,9 +154,9 @@ $(document).ready(function(){
 				
 				case 'Télécom':
 				$('.ligneoperation').each(function(){
-					if($(this).find(".postebudgetaire").text()=="Télécom"){
+					if($(this).find("#postebudgetaire").text()=="Télécom"){
 						
-						montantCumulePosteTelecom+=(parseFloat($(this).find('.montant').val()));
+						montantCumulePosteTelecom+=(parseFloat($(this).find('#montant').val()));
 					}
 						
 				});
@@ -163,9 +166,9 @@ $(document).ready(function(){
 				
 				case 'Energie':
 				$('.ligneoperation').each(function(){
-					if($(this).find(".postebudgetaire").text()=="Energie"){
+					if($(this).find("#postebudgetaire").text()=="Energie"){
 						
-						montantCumulePosteEnergie+=(parseFloat($(this).find('.montant').val()));
+						montantCumulePosteEnergie+=(parseFloat($(this).find('#montant').val()));
 					}
 						
 				});
@@ -175,9 +178,9 @@ $(document).ready(function(){
 				
 				case 'Santé':
 				$('.ligneoperation').each(function(){
-					if($(this).find(".postebudgetaire").text()=="Santé"){
+					if($(this).find("#postebudgetaire").text()=="Santé"){
 						
-						montantCumulePosteSante+=(parseFloat($(this).find('.montant').val()));
+						montantCumulePosteSante+=(parseFloat($(this).find('#montant').val()));
 					}
 						
 				});
@@ -187,9 +190,9 @@ $(document).ready(function(){
 				
 				case 'Taxes/Impôts':
 				$('.ligneoperation').each(function(){
-					if($(this).find(".postebudgetaire").text()=="Taxes/Impôts"){
+					if($(this).find("#postebudgetaire").text()=="Taxes/Impôts"){
 						
-						montantCumulePosteImpots+=(parseFloat($(this).find('.montant').val()));
+						montantCumulePosteImpots+=(parseFloat($(this).find('#montant').val()));
 					}
 						
 				});
@@ -199,9 +202,9 @@ $(document).ready(function(){
 				
 				case 'Vacances(location)':
 				$('.ligneoperation').each(function(){
-					if($(this).find(".postebudgetaire").text()=="Vacances(location)"){
+					if($(this).find("#postebudgetaire").text()=="Vacances(location)"){
 						
-						montantCumulePosteVacances+=(parseFloat($(this).find('.montant').val()));
+						montantCumulePosteVacances+=(parseFloat($(this).find('#montant').val()));
 					}
 						
 				});
@@ -211,9 +214,9 @@ $(document).ready(function(){
 				
 				case 'Auto (assurance+entretien)':
 				$('.ligneoperation').each(function(){
-					if($(this).find(".postebudgetaire").text()=="Auto (assurance+entretien)"){
+					if($(this).find("#postebudgetaire").text()=="Auto (assurance+entretien)"){
 						
-						montantCumulePosteAuto+=(parseFloat($(this).find('.montant').val()));
+						montantCumulePosteAuto+=(parseFloat($(this).find('#montant').val()));
 					}
 						
 				});
@@ -223,9 +226,9 @@ $(document).ready(function(){
 				
 				case 'Maison':
 				$('.ligneoperation').each(function(){
-					if($(this).find(".postebudgetaire").text()=="Maison"){
+					if($(this).find("#postebudgetaire").text()=="Maison"){
 						
-						montantCumulePosteMaison+=(parseFloat($(this).find('.montant').val()));
+						montantCumulePosteMaison+=(parseFloat($(this).find('#montant').val()));
 					}
 						
 				});
@@ -235,9 +238,9 @@ $(document).ready(function(){
 				
 				case 'Scolarité':
 				$('.ligneoperation').each(function(){
-					if($(this).find(".postebudgetaire").text()=="Scolarité"){
+					if($(this).find("#postebudgetaire").text()=="Scolarité"){
 						
-						montantCumulePosteScolarite+=(parseFloat($(this).find('.montant').val()));
+						montantCumulePosteScolarite+=(parseFloat($(this).find('#montant').val()));
 					}
 						
 				});
@@ -247,9 +250,9 @@ $(document).ready(function(){
 				
 				case 'Garde Enfants':
 				$('.ligneoperation').each(function(){
-					if($(this).find(".postebudgetaire").text()=="Garde Enfants"){
+					if($(this).find("#postebudgetaire").text()=="Garde Enfants"){
 						
-						montantCumulePosteGardeEnfants+=(parseFloat($(this).find('.montant').val()));
+						montantCumulePosteGardeEnfants+=(parseFloat($(this).find('#montant').val()));
 					}
 						
 				});
@@ -259,9 +262,9 @@ $(document).ready(function(){
 				
 				case 'CAF':
 				$('.ligneoperation').each(function(){
-					if($(this).find(".postebudgetaire").text()=="CAF"){
+					if($(this).find("#postebudgetaire").text()=="CAF"){
 						
-						montantCumulePosteCAF+=(parseFloat($(this).find('.montant').val()));
+						montantCumulePosteCAF+=(parseFloat($(this).find('#montant').val()));
 					}
 						
 				});
@@ -271,9 +274,9 @@ $(document).ready(function(){
 				
 				case 'Salaire':
 				$('.ligneoperation').each(function(){
-					if($(this).find(".postebudgetaire").text()=="Salaire"){
+					if($(this).find("#postebudgetaire").text()=="Salaire"){
 						
-						montantCumulePosteSalaire+=(parseFloat($(this).find('.montant').val()));
+						montantCumulePosteSalaire+=(parseFloat($(this).find('#montant').val()));
 					}
 						
 				});
@@ -289,6 +292,32 @@ $(document).ready(function(){
 	
 	calcul_montant_cumule();
 	
+	// $('.editable').click(function(){
+		// console.log('zone editable');
+		// $(this).each(function(){
+			
+			// switch($(this).attr('id')){
+				// case 'date':
+					// $(this).replaceWith('<input type="date" value=""/>');
+				// break;
+				
+				// case 'nature':
+					// $(this).replaceWith('<select><option value="Dépense">Dépense</option><option value="Recette">Recette</option></select>');
+				// break;
+				
+				// case 'type':
+					// $(this).replaceWith('<select><option value="Carte bancaire">Carte bancaire</option><option value="Chèque">Chèque</option><option value="Virement">Virement</option><option value ="Prélèvement">Prélèvement</option></select>');
+				// break;
+				
+				// case 'postebudgetaire':
+					// $(this).replaceWith('<select><option value="Alimentation">Alimentation</option><option value="Emprunts">Emprunts</option><option value="Loisirs">Loisirs</option><option value="Epargne">Epargne</option><option value="Cadeaux">Cadeaux</option><option value="Gasoil">Gasoil</option><option value="Vestimentaire">Vestimentaire</option><option value="Télécom">Télécom</option><option value="Energie">Energie</option><option value="Santé">Santé</option><option value="Taxes/Impôts">Taxes/Impôts</option><option value="Vacances(location)">Vacances(location)</option><option value="Auto (assurance+entretien)">Auto (assurance+entretien)</option><option value="Maison">Maison</option><option value="Scolarité">Scolarité</option><option value="Garde Enfants">Garde Enfants</option><option value="CAF">CAF</option><option value="Salaire">Salaire</option></select>');
+				// break;
+				
+				
+				
+			// }
+		// });
 	
+	// });
 	
 })
