@@ -103,8 +103,8 @@
 			
 		break;
 		
-		case 'update':
-			
+		// case 'update':
+			// $operation=get_operation_from_id($id);
 			
 	}
 ?>

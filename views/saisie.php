@@ -23,7 +23,7 @@
 				<thead>
 					<tr>
 						<th style="width: 150px">Action</th>
-						<th style="width: 90px">Date de l'opération</th>
+						<th style="width: 120px">Date de l'opération</th>
 						<th style="width: 70px">Nature</th>
 						<th style="width: 70px">Type</th>
 						<th style="width: 70px">Poste budgétaire</th>			
@@ -36,11 +36,11 @@
 				foreach($operationsDuMois as $oM){
 					echo('
 						<tr class="ligneoperation">
-							<td><a href="index.php?page=operationsDuMois&action=update&id="'.$oM['id'].'">Modif.</a>|<a href="index.php?page=operationsDuMois&action=delete&id="'.$oM['id'].'">Suppr.</a></td>
+							<td class="update" id='.$oM['id'].'>Modif</td>
 							<td class="editable" id="date">'.$oM['date'].'</td>
 							<td class="editable" id="nature">'.$oM['nature'].'</td>
 							<td class="editable" id="type">'.$oM['type'].'</td>
-							<td class="editable" id="postebudgetaire">'.get_nom_poste_budgetaire_from_id_poste_budgetaire($oM['posteBudgetaire'])['nom'].'</td>
+							<td class="editable" id="postebudgetaireoperation">'.get_nom_poste_budgetaire_from_id_poste_budgetaire($oM['posteBudgetaire'])['nom'].'</td>
 							<td class="editable" id="intitule">'.$oM['intitule'].'</td>
 							<td><input class="editable" id="montant" type="text" value="'.$oM['montant'].'"/></td>
 						</tr>

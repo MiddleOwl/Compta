@@ -54,6 +54,14 @@
 		return($nomPosteBudgetaire);
 	}
 	
+	function get_operation_from_id($id){
+		include(dirname(__FILE__)."/../hidden/connexion.php");
+		$query=$bdd->query('SELECT date,nature,type,posteBudgetaire,intitule,montant FROM operations WHERE id="'.$id.'"');
+		$operation=$query->fetch();
+		$query->closeCursor();
+		return ($operation);
+	}
+	
 	
 ?>
 
