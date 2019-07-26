@@ -62,6 +62,18 @@
 		return ($operation);
 	}
 	
+	function update_operation($id,$date,$nature,$type,$idPosteBudgetaire,$intitule,$montant){
+		include(dirname(__FILE__)."/../hidden/connexion.php");
+		$query=$bdd->exec('UPDATE operations SET
+			date="'.$date.'",
+			nature="'.$nature.'",
+			type="'.$type.'",
+			posteBudgetaire="'.$idPosteBudgetaire.'",
+			intitule="'.$intitule.'",
+			montant="'.$montant.'"
+			WHERE id='.$id);
+	}
+	
 	
 ?>
 

@@ -103,8 +103,19 @@
 			
 		break;
 		
-		// case 'update':
+		case 'update':
 			// $operation=get_operation_from_id($id);
+			$idPosteBudgetaire=get_id_poste_budgetaire_from_nom_poste_budgetaire($_POST['poste'])['id'];
+			$id=$_POST['id'];
+			$date=$_POST['date'];
+			$nature=$_POST['nature'];
+			$type=$_POST['type'];
+			$posteBudgetaire=$_POST['poste'];
+			$intitule=$_POST['intitule'];
+			$montant=$_POST['montant'];
+			
+			update_operation($id,$date,$nature,$type,$idPosteBudgetaire,$intitule,$montant);
+			echo('Opération mise à jour!');
 			
 	}
 ?>

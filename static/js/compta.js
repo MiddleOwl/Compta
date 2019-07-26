@@ -19,29 +19,74 @@ $(document).ready(function(){
 	);
 	
 	
+	 $('.update').click(function(){
+		 
+		var idOperation = $(this).parent().attr('id');
+		console.log(idOperation);
+		$('#idOperation').val(idOperation);
+		$('#dateoperation').val($(this).find('~td#date').text());
+		$('#natureoperation').val($(this).find('~td#nature').text());
+		$('#typeoperation').val($(this).find('~td#type').text());
+		$('#postebudgetaire').val($(this).find('~td#postebudgetaireoperation').text());
+		$('#intituleoperation').val($(this).find('~td#intitule').text());
+		$('#montantoperation').val($(this).find('~td input').val());
+		$('#saveOperation').val("Modifier l'opération");
+		
+	 });
+	
+	
+	
 	$('#saveOperation').click(function(){
 		
-		$.post(
-			'index.php?page=operationsdumois&action=save',
+		
+		switch($('#saveOperation').val()){
 			
-			{
-				date:$('#dateoperation').val(),
-				nature:$('#natureoperation').val(),
-				type:$('#typeoperation').val(),
-				poste:$('#postebudgetaire').val(),
-				intitule:$('#intituleoperation').val(),
-				montant:$('#montantoperation').val(),
+			case 'Enregistrer':
+		
+			$.post(
+				'index.php?page=operationsdumois&action=save',
 				
+				{
+					date:$('#dateoperation').val(),
+					nature:$('#natureoperation').val(),
+					type:$('#typeoperation').val(),
+					poste:$('#postebudgetaire').val(),
+					intitule:$('#intituleoperation').val(),
+					montant:$('#montantoperation').val(),
+					
+					
+				},
 				
-			},
+				function(data){
+					alert(data);
+					location='index.php?page=operationsdumois&action=read&annee='+annee+'&mois='+mois;
+					
+				},
+				"text"
+			)
+			break;
 			
-			function(data){
-				alert(data);
-				location='index.php?page=operationsdumois&action=read&annee='+annee+'&mois='+mois;
-				
-			},
-			"text"
-		)		
+			case 'Modifier l\'opération':
+			
+			$.post(
+				'index.php?page=operationsdumois&action=update',
+				{
+					id:$('#idOperation').val(),
+					date:$('#dateoperation').val(),
+					nature:$('#natureoperation').val(),
+					type:$('#typeoperation').val(),
+					poste:$('#postebudgetaire').val(),
+					intitule:$('#intituleoperation').val(),
+					montant:$('#montantoperation').val(),
+					
+				},
+				function(data){
+					alert(data);
+					location='index.php?page=operationsdumois&action=read&annee='+annee+'&mois='+mois;
+				},
+				"text"
+			)		
+		}			
 		
 	});	
 	
@@ -290,20 +335,6 @@ $(document).ready(function(){
 		});
 	}
 	
-	calcul_montant_cumule();
-	
-	 $('.update').click(function(){
-		
-		
-		$('#dateoperation').val($(this).find('~td#date').text());
-		$('#natureoperation').val($(this).find('~td#nature').text());
-		$('#typeoperation').val($(this).find('~td#type').text());
-		$('#postebudgetaire').val($(this).find('~td#postebudgetaireoperation').text());
-		$('#intituleoperation').val($(this).find('~td#intitule').text());
-		$('#montantoperation').val($(this).find('~td input').val())
-		
-		
-				
-	 });
+	calcul_montant_cumule();	
 	
 })

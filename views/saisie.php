@@ -35,8 +35,8 @@
 				<?php 
 				foreach($operationsDuMois as $oM){
 					echo('
-						<tr class="ligneoperation">
-							<td class="update" id='.$oM['id'].'>Modif</td>
+						<tr class="ligneoperation" id='.$oM['id'].'>
+							<td class="update"><input type="button" value ="Modif."/></td>
 							<td class="editable" id="date">'.$oM['date'].'</td>
 							<td class="editable" id="nature">'.$oM['nature'].'</td>
 							<td class="editable" id="type">'.$oM['type'].'</td>
@@ -63,6 +63,11 @@
 				<p id="titresaisie">Saisir une nouvelle opération</p>
 
                 <table>
+					
+					<tr>
+						<td id="idOperation"></td>
+					</tr>
+					
                     <tr>
                         <td><label>Date:</label></td>
                         <td><input id="dateoperation" type="date" name="dateoperation" value="dateoperation"/></td>
