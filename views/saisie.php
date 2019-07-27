@@ -22,7 +22,7 @@
 			<table>
 				<thead>
 					<tr>
-						<th style="width: 150px">Action</th>
+						<th style="width: 170px">Action</th>
 						<th style="width: 120px">Date de l'opération</th>
 						<th style="width: 70px">Nature</th>
 						<th style="width: 70px">Type</th>
@@ -36,7 +36,7 @@
 				foreach($operationsDuMois as $oM){
 					echo('
 						<tr class="ligneoperation" id='.$oM['id'].'>
-							<td class="update"><input type="button" value ="Modif."/></td>
+							<td class="update"><input id="Modif" type="button" value ="Modif."/><input id="Suppr" type="button" value ="Suppr."/></td>
 							<td class="editable" id="date">'.$oM['date'].'</td>
 							<td class="editable" id="nature">'.$oM['nature'].'</td>
 							<td class="editable" id="type">'.$oM['type'].'</td>
