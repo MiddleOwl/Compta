@@ -70,13 +70,13 @@
 					
                     <tr>
                         <td><label>Date:</label></td>
-                        <td><input id="dateoperation" type="date" name="dateoperation" value="dateoperation"/></td>
+                        <td><input class="eltFormulaireSaisieOpe" id="dateoperation" type="date" name="dateoperation" value="dateoperation"/></td>
                     </tr>
                 
                     <tr>
                         <td><label>Nature:</label></td>
                         <td>
-                            <select id="natureoperation" name="natureoperation">
+                            <select class="eltFormulaireSaisieOpe" id="natureoperation" name="natureoperation">
                                 <option value="Dépense">Dépense</option>
                                 <option value="Recette">Recette</option>
                             </select>
@@ -86,7 +86,7 @@
                     <tr>
                         <td><label>Type:</label>
                         <td>
-                            <select id="typeoperation" name="typeoperation">
+                            <select class="eltFormulaireSaisieOpe" id="typeoperation" name="typeoperation">
                                 <option value="Carte Bancaire">Carte bancaire</option>
                                 <option value="Chèque">Chèque</option>
                                 <option value="Virement">Virement</option>
@@ -98,7 +98,7 @@
                     <tr>
                         <td><label>Poste budgétaire:</label></td>
                         <td>
-                            <select id="postebudgetaire" name="postebudgetaire">
+                            <select class="eltFormulaireSaisieOpe" id="postebudgetaire" name="postebudgetaire">
                             <?php foreach($posteBudgetaire as $pb){echo ("<option value=".$pb['nom'].">".$pb['nom']."</option>");}?>
                             </select>
                         </td>
@@ -106,16 +106,17 @@
                     
                     <tr>
                         <td><label>Intitulé:</label></td>
-                        <td><textarea id="intituleoperation"rows="1" cols="40"></textarea></td>
+                        <td><textarea class="eltFormulaireSaisieOpe" id="intituleoperation"rows="1" cols="40"></textarea></td>
                     </tr>
                     
                     <tr>
                         <td><label>Montant:</label></td>
-                        <td><input id="montantoperation" type="number" step="0.01"/></td>
+                        <td><input class="eltFormulaireSaisieOpe" id="montantoperation" type="number" step="0.01"/></td>
                     </tr>
                 </table>
 
                 <input id="saveOperation" type="button" name="enregistrer" value="Enregistrer"/>
+				<input id="annuleOperation" type="button" style="visibility : hidden" value="Annuler"/>
 			</div>
 			
 			<hr id="separationsaisierecap">

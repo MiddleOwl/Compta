@@ -19,7 +19,7 @@ $(document).ready(function(){
 	);
 	
 	
-	 $('.update').click(function(){
+	$('.update').click(function(){
 		 
 		var idOperation = $(this).parent().attr('id');
 		console.log(idOperation);
@@ -31,7 +31,16 @@ $(document).ready(function(){
 		$('#intituleoperation').val($(this).find('~td#intitule').text());
 		$('#montantoperation').val($(this).find('~td input').val());
 		$('#saveOperation').val("Modifier l'opération");
+		$('#annuleOperation').css({visibility:'visible'});
 		
+	 });
+	 
+	$('#formulairesaisie .eltFormulaireSaisieOpe').click(function(){
+		$('#annuleOperation').css({visibility:'visible'});
+	});
+	 
+	$('#annuleOperation').click(function(){
+		 location='index.php?page=operationsdumois&action=read&annee='+annee+'&mois='+mois;
 	 });
 	
 	
