@@ -19,21 +19,42 @@ $(document).ready(function(){
 	);
 	
 	
-	$('.update').click(function(){
-		 
-		var idOperation = $(this).parent().attr('id');
+	$('.update #Modif').click(function(){
+		console.log('click on Modif!');
+		var idOperation = $(this).parent().parent().attr('id');
 		console.log(idOperation);
 		$('#idOperation').val(idOperation);
-		$('#dateoperation').val($(this).find('~td#date').text());
-		$('#natureoperation').val($(this).find('~td#nature').text());
-		$('#typeoperation').val($(this).find('~td#type').text());
-		$('#postebudgetaire').val($(this).find('~td#postebudgetaireoperation').text());
-		$('#intituleoperation').val($(this).find('~td#intitule').text());
-		$('#montantoperation').val($(this).find('~td input').val());
+		$('#dateoperation').val($(this).parent().next('#date').text());
+		$('#natureoperation').val($(this).parent().nextAll('#nature').text());
+		$('#typeoperation').val($(this).parent().nextAll('#type').text());
+		$('#postebudgetaire').val($(this).parent().nextAll('#postebudgetaireoperation').text());
+		$('#intituleoperation').val($(this).parent().nextAll('#intitule').text());
+		$('#montantoperation').val($(this).parent().nextAll().find('#montant').val());
 		$('#saveOperation').val("Modifier l'opération");
 		$('#annuleOperation').css({visibility:'visible'});
 		
 	 });
+	 
+	$('.update #Suppr').click(function(){
+		console.log('click on Suppr!');
+		var idOperation = $(this).parent().parent().attr('id');
+		var nature = ($(this).parent().nextAll('#nature').text());
+		var poste = ($(this).parent().nextAll('#postebudgetaireoperation').text());
+		var montant = ($(this).parent().nextAll().find('#montant').val())
+		if(confirm('Veux tu supprimer cette '+nature+' de '+poste+' pour un montant de '+montant+' € ?')){
+			$.post(
+				'index.php?page=operationsdumois&action=delete',
+				{
+					id:idOperation
+				},
+				function(data){
+					alert(data);
+					location='index.php?page=operationsdumois&action=read&annee='+annee+'&mois='+mois;
+				},
+				"text"			
+			)
+		}
+	});
 	 
 	$('#formulairesaisie .eltFormulaireSaisieOpe').click(function(){
 		$('#annuleOperation').css({visibility:'visible'});

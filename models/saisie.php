@@ -74,6 +74,11 @@
 			WHERE id='.$id);
 	}
 	
+	function delete_operation($id){
+		include(dirname(__FILE__)."/../hidden/connexion.php");
+		$query=$bdd->exec("delete from operations WHERE id=".$id);
+	}
+	
 	
 ?>
 
