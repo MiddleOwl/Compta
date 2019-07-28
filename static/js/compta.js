@@ -4,7 +4,7 @@ $(document).ready(function(){
 	var annee=url.searchParams.get('annee');
 	var mois=url.searchParams.get('mois');
 	
-	
+		
 	$.get(
 	
 		'index.php?page=operationsdumois&action=solde',
@@ -18,11 +18,21 @@ $(document).ready(function(){
 		'text'
 	);
 	
+	// var isComptabilise = $('#comptabilise').text()==1?true:false;
+	// isComptabilise==true?$('#montant').css({backgroundColor:'green'}):$('#montant').css({backgroundColor:''});
+	
+	$('.ligneoperation').each(function(){
+		if($(this).find('#comptabilise').text()==1){
+			$(this).find('#montant').css({backgroundColor:'rgba(140,198,62,0.8)'});
+		};
+					
+	});
 	
 	$('.update #Modif').click(function(){
 		console.log('click on Modif!');
 		var idOperation = $(this).parent().parent().attr('id');
-		console.log(idOperation);
+		var isComptabilise = $(this).parent().nextAll('#comptabilise').text()==1?true:false;
+		console.log(isComptabilise);
 		$('#idOperation').val(idOperation);
 		$('#dateoperation').val($(this).parent().next('#date').text());
 		$('#natureoperation').val($(this).parent().nextAll('#nature').text());
@@ -30,6 +40,7 @@ $(document).ready(function(){
 		$('#postebudgetaire').val($(this).parent().nextAll('#postebudgetaireoperation').text());
 		$('#intituleoperation').val($(this).parent().nextAll('#intitule').text());
 		$('#montantoperation').val($(this).parent().nextAll().find('#montant').val());
+		$('#operationcomptabilise').prop('checked',isComptabilise);
 		$('#saveOperation').val("Modifier l'opération");
 		$('#annuleOperation').css({visibility:'visible'});
 		
@@ -54,6 +65,47 @@ $(document).ready(function(){
 				"text"			
 			)
 		}
+	});
+	
+	$('.update #Compt').click(function(){
+		var isComptabilise = $(this).parent().nextAll('#comptabilise').text()==1?true:false;
+		//alert(isComptabilise);
+		if(confirm('Veux tu comptabiliser cette opération?')){
+			switch(isComptabilise){//si l'opération est déjà comptabilisée, comptabilise passe à faux;sinon, passe à vrai
+				case true:
+				$.post(
+					'index.php?page=operationsdumois&action=comptabiliser',
+					{
+						id:$(this).parent().parent().attr('id'),
+						comptabilise:false
+					},
+					function(data){
+						
+						alert(data);
+						location='index.php?page=operationsdumois&action=read&annee='+annee+'&mois='+mois;
+					},
+					'text'
+				)
+				break;
+				
+				case false:
+				$.post(
+					'index.php?page=operationsdumois&action=comptabiliser',
+					{
+						id:$(this).parent().parent().attr('id'),
+						comptabilise:true
+					},
+					function(data){
+						alert(data);
+						location='index.php?page=operationsdumois&action=read&annee='+annee+'&mois='+mois;
+					},
+					'text'
+				)		
+				
+			}			
+				
+		}
+		
 	});
 	 
 	$('#formulairesaisie .eltFormulaireSaisieOpe').click(function(){
@@ -83,11 +135,13 @@ $(document).ready(function(){
 					poste:$('#postebudgetaire').val(),
 					intitule:$('#intituleoperation').val(),
 					montant:$('#montantoperation').val(),
+					comptabilise:$('#operationcomptabilise').is(':checked')
 					
 					
 				},
 				
 				function(data){
+					
 					alert(data);
 					location='index.php?page=operationsdumois&action=read&annee='+annee+'&mois='+mois;
 					
@@ -108,6 +162,7 @@ $(document).ready(function(){
 					poste:$('#postebudgetaire').val(),
 					intitule:$('#intituleoperation').val(),
 					montant:$('#montantoperation').val(),
+					comptabilise:$('#operationcomptabilise').is(':checked')
 					
 				},
 				function(data){

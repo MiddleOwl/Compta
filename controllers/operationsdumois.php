@@ -44,7 +44,7 @@
 				
 				
 			}
-			$operationsDuMois=get_operations_du_mois($annee,$mois);		
+			$operationsDuMois=get_operations_du_mois($annee,$mois);	
 			$posteBudgetaire=get_poste_budgetaire();
 			
 			include(dirname(__FILE__)."/../views/saisie.php");
@@ -80,8 +80,9 @@
 			$type=$_POST['type'];
 			$idPosteBudgetaire=get_id_poste_budgetaire_from_nom_poste_budgetaire($_POST['poste'])['id'];
 			$intitule=$_POST['intitule'];
-			$montant=$_POST['montant'];	
-			
+			$montant=$_POST['montant'];
+			$comptabilise=$_POST['comptabilise'];
+			//echo($comptabilise);
 			if(!empty($date) AND !empty($montant)){
 				
 				create_operation(
@@ -90,7 +91,8 @@
 					$type,
 					$idPosteBudgetaire,
 					$intitule,
-					$montant
+					$montant,
+					$comptabilise
 				);			
 				
 				echo('La '.$_POST['nature'].' a bien été enregistrée');
@@ -113,9 +115,17 @@
 			$posteBudgetaire=$_POST['poste'];
 			$intitule=$_POST['intitule'];
 			$montant=$_POST['montant'];
-			
-			update_operation($id,$date,$nature,$type,$idPosteBudgetaire,$intitule,$montant);
+			$comptabilise=($_POST['comptabilise']=='true')?1:0;
+			update_operation($id,$date,$nature,$type,$idPosteBudgetaire,$intitule,$montant,$comptabilise);
 			echo('Opération mise à jour!');
+		break;
+		
+		case'comptabiliser':
+		
+			$id=$_POST['id'];
+			$comptabilise=($_POST['comptabilise']=='true')?1:0;
+			comptabiliser_operation($id,$comptabilise);
+			
 		break;
 		
 		case 'delete':

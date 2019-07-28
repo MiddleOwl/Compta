@@ -22,7 +22,7 @@
 			<table>
 				<thead>
 					<tr>
-						<th style="width: 170px">Action</th>
+						<th style="width: 260px">Action</th>
 						<th style="width: 120px">Date de l'opération</th>
 						<th style="width: 70px">Nature</th>
 						<th style="width: 70px">Type</th>
@@ -36,17 +36,27 @@
 				foreach($operationsDuMois as $oM){
 					echo('
 						<tr class="ligneoperation" id='.$oM['id'].'>
-							<td class="update"><input id="Modif" type="button" value ="Modif."/><input id="Suppr" type="button" value ="Suppr."/></td>
+						
+							<td class="update">
+								<input id="Modif" type="button" value ="Modif."/>
+								<input id="Suppr" type="button" value ="Suppr."/>
+								<input id="Compt" type="button" value="Compt."/>
+							</td>
 							<td class="editable" id="date">'.$oM['date'].'</td>
 							<td class="editable" id="nature">'.$oM['nature'].'</td>
 							<td class="editable" id="type">'.$oM['type'].'</td>
 							<td class="editable" id="postebudgetaireoperation">'.get_nom_poste_budgetaire_from_id_poste_budgetaire($oM['posteBudgetaire'])['nom'].'</td>
 							<td class="editable" id="intitule">'.$oM['intitule'].'</td>
 							<td><input class="editable" id="montant" type="text" value="'.$oM['montant'].'"/></td>
+							<td id="comptabilise">'.$oM['comptabilise'].'</td>
+							
 						</tr>
 					');
 				}
 				?>
+					
+				  
+				
 				</tbody>			
 			</table>
 		</div>
@@ -113,6 +123,10 @@
                         <td><label>Montant:</label></td>
                         <td><input class="eltFormulaireSaisieOpe" id="montantoperation" type="number" step="0.01"/></td>
                     </tr>
+					<tr>
+						<td><label>Comptabilisée:</label></td>
+						<td><input class="eltFormulaireSaisieOpe" id="operationcomptabilise" type="checkbox" name="comptabilise"/></td>
+					</tr>
                 </table>
 
                 <input id="saveOperation" type="button" name="enregistrer" value="Enregistrer"/>

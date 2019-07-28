@@ -1,8 +1,8 @@
 <?php
 	
-	function create_operation($date,$nature,$type,$idPosteBudgetaire,$intitule,$montant){
+	function create_operation($date,$nature,$type,$idPosteBudgetaire,$intitule,$montant,$comptabilise){
 		include(dirname(__FILE__)."/../hidden/connexion.php");
-		$query = $bdd -> exec('INSERT INTO operations (date,nature,type,posteBudgetaire,intitule,montant) VALUES ("'.$date.'","'.$nature.'","'.$type.'","'.$idPosteBudgetaire.'","'.$intitule.'",'.$montant.')');
+		$query = $bdd -> exec('INSERT INTO operations (date,nature,type,posteBudgetaire,intitule,montant,comptabilise) VALUES ("'.$date.'","'.$nature.'","'.$type.'","'.$idPosteBudgetaire.'","'.$intitule.'",'.$montant.','.$comptabilise.')');
 	}
 	
 	function get_operations_du_mois($annee,$mois){
@@ -62,7 +62,7 @@
 		return ($operation);
 	}
 	
-	function update_operation($id,$date,$nature,$type,$idPosteBudgetaire,$intitule,$montant){
+	function update_operation($id,$date,$nature,$type,$idPosteBudgetaire,$intitule,$montant,$comptabilise){
 		include(dirname(__FILE__)."/../hidden/connexion.php");
 		$query=$bdd->exec('UPDATE operations SET
 			date="'.$date.'",
@@ -70,7 +70,15 @@
 			type="'.$type.'",
 			posteBudgetaire="'.$idPosteBudgetaire.'",
 			intitule="'.$intitule.'",
-			montant="'.$montant.'"
+			montant="'.$montant.'",
+			comptabilise="'.$comptabilise.'"
+			WHERE id='.$id);
+	}
+	
+	function comptabiliser_operation($id,$comptabilise){
+		include(dirname(__FILE__)."/../hidden/connexion.php");
+		$query=$bdd->exec('UPDATE operations SET
+			comptabilise="'.$comptabilise.'"
 			WHERE id='.$id);
 	}
 	
