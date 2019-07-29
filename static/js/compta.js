@@ -70,7 +70,7 @@ $(document).ready(function(){
 	$('.update #Compt').click(function(){
 		var isComptabilise = $(this).parent().nextAll('#comptabilise').text()==1?true:false;
 		//alert(isComptabilise);
-		if(confirm('Veux tu comptabiliser cette opération?')){
+		// if(confirm('Veux tu comptabiliser cette opération?')){
 			switch(isComptabilise){//si l'opération est déjà comptabilisée, comptabilise passe à faux;sinon, passe à vrai
 				case true:
 				$.post(
@@ -81,7 +81,7 @@ $(document).ready(function(){
 					},
 					function(data){
 						
-						alert(data);
+						
 						location='index.php?page=operationsdumois&action=read&annee='+annee+'&mois='+mois;
 					},
 					'text'
@@ -96,7 +96,7 @@ $(document).ready(function(){
 						comptabilise:true
 					},
 					function(data){
-						alert(data);
+						
 						location='index.php?page=operationsdumois&action=read&annee='+annee+'&mois='+mois;
 					},
 					'text'
@@ -104,7 +104,7 @@ $(document).ready(function(){
 				
 			}			
 				
-		}
+		//}
 		
 	});
 	 
